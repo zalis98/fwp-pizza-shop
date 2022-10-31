@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
  * @description Displays current pizza orders
  * @param {Object} props Imports items from parent component: state and setState methods regarding disabled Form
  * @returns Rendering of function
+ * @module
  */
 function Order(props) {
 

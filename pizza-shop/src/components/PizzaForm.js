@@ -13,16 +13,17 @@ import Button from "react-bootstrap/Button";
  * @description Function to create Pizza order
  * @param {Object} props Imports items from parent component: state and setState methods regarding disabled Form
  * @returns Rendering of function
+ * @module
  */
 function PizzaForm(props) {
   /**
-   * @constant sizeOption
+   * @const sizeOption
    * @description Sets size of pizza
    * @type {number}
    */
   const [sizeOption, setSizeOption] = useState({});
   /**
-   * @constant toppingOptions
+   * @const toppingOptions
    * @description Array of selected toppings
    * @type {Array<string>}
    */

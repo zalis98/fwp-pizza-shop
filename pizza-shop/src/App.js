@@ -7,6 +7,7 @@ import { useState } from 'react';
  * @function App
  * @description Outer component to display pizza form and orders
  * @returns Rendering of function
+ * @module
  */
 function App() {
 
