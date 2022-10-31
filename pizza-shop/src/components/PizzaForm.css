@@ -1,19 +1,12 @@
-/* .pizza-form {
-
-} */
+.pizza-form {
+  padding: 1rem;
+}
 
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* .btn-primary {
-  --bs-btn-bg: #6739B7;
-} */
-
-/* .btn-secondary {
-  color: black;
-} */
 
 .size-button.btn.btn-primary {
   --bs-btn-bg: #f1f1f1;
@@ -24,18 +17,18 @@
   --bs-btn-hover-border-color: #6f42c1;
   --bs-btn-active-bg: #6f42c1;
   --bs-btn-active-border-color: #6f42c1;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .toppings {
   text-align: left;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* align-items: baseline; */
 }
 
 .pizza-choice {
   background-color: #f1f1f1;
   padding: 1rem;
+  height: 15rem;
 }
 
 .form-check-inline .form-check-input {
@@ -45,42 +38,24 @@ background-color: #f1f1f1;
 
 input.form-check-input[type=checkbox] {
   border-radius: 0;
-  border-width: 1.5px;
+  border-width: 0.1rem;
   border-color: #000;
 }
-
+.all-details {
+  padding-bottom: 1rem;;
+  border-bottom: 1.5px solid #adb5bd;
+}
 .details {
   text-align: left;
+  margin-top: 1rem;
 }
 
 input.form-control {
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 1.5px solid #000;
+  border-bottom: 1.5px solid #6c757d;
   border-radius: 0;
   padding: 0 6px;
   font-size: 1.5vw;
 }
-
-/* .form-control {
-
-} */
-
-/* .form-check.form-check-inline {
-  align-items:flex-end;
-} */
-
-/* .form-check-input {
-  margin-top: auto;
-  margin-bottom: auto;
-} */
-
-/* .form-check.form-check-inline {
-  padding-bottom: 10px;
-  align-items: middle;
-} */
-/* 
-.form-check-label {
-  vertical-align: middle;
-} */
