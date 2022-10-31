@@ -7,8 +7,10 @@ beforeEach(() => {
     <PizzaForm/>
   );
 })
+
 /**
- * Checks that each element in the pizza order form is displayed on the screen
+ * @function PizzaFormTest
+ * @description Checks that each element in the pizza order form is displayed on the screen
  */
 test("check elements exist on screen", () => {
   expect(getRadio()).toBeInTheDocument();
@@ -22,7 +24,6 @@ test("check elements exist on screen", () => {
   expect(getSubmitButton()).toBeInTheDocument();
 
 });
-
 
 function getRadio(){
   return screen.getByTestId("radio-buttons");

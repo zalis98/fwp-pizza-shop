@@ -9,14 +9,13 @@ beforeEach(() => {
 })
 
 /**
- * Check the element rendered correctly
+ * @function OrderTest
+ * @description Check the element rendered correctly
  */
 test("check element exists on screen", () => {
   expect(getOrders()).toBeInTheDocument();
 });
 
-
-// initialise element getter
 function getOrders(){
   return screen.getByTestId("pizza-orders");
 }
