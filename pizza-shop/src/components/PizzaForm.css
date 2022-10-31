@@ -38,6 +38,10 @@ margin-top: 4px;
 background-color: #f1f1f1;
 }
 
+input.form-check-input:checked {
+  background-color: #6f42c1;
+}
+
 input.form-check-input[type=checkbox] {
   border-radius: 0;
   border-width: 0.1rem;

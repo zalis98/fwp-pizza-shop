@@ -10,26 +10,118 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function PizzaForm() {
-  const [options, setOptions] = useState(1);
-
-  // const selectSize = (e) => {
-  //   setOptions(e.target.value);
-  //   console.log("grabbed value " + e.target.value);
-  //   console.log("options: " + options);
-  // }
+  const [sizeOption, setSizeOption] = useState({});
+  const [toppingOptions, setToppingOptions] = useState([]);
+  const [nameInput, setNameInput] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: null
+  });
+  const [addressInput, setAddressInput] = useState({
+    street: "",
+    aptNumber: null,
+    city: "",
+    floor: null
+  });
 
   const handleSize = (val) => {
-    setOptions(val);
-    // console.log(options);
+    setSizeOption(val);
+  }
+
+  const handleTopping = (e) => {
+    if (e.target.checked) {
+      setToppingOptions(toppingOptions => [...toppingOptions, e.target.name])
+    } else if (!e.target.checked) {
+      for (let i = 0; i < toppingOptions.length; i++) {
+        if (e.target.name === toppingOptions[i]) {
+          const toppingsCopy = [...toppingOptions];
+          const toppingIndex = toppingsCopy.indexOf(e.target.name);
+          toppingsCopy.splice(toppingIndex, 1);
+          setToppingOptions(toppingOptions => [...toppingsCopy]);
+        }
+      }
+    }
+  }
+
+  const getNameData = (e) => {
+    const { value, name } = e.target;
+    setNameInput(() => {
+      return {
+        ...nameInput,
+        [name]: value
+      }
+    });
+  }
+
+  const getAddressData = (e) => {
+    const { value, name } = e.target;
+    setAddressInput(() => {
+      return {
+        ...addressInput,
+      [name]: value
+      }
+    });
+  }
+
+  const submitOrder = (e) => {
+    e.preventDefault();
+    const { firstName, lastName, phoneNumber } = nameInput;
+    const { street, aptNumber, city, floor } = addressInput;
+
+    if (sizeOption !== 1 && sizeOption !== 2 && sizeOption !== 3) {
+      window.alert("Pizza size must be chosen");
+      return;
+    } else if (toppingOptions.length < 2) {
+      window.alert("A minimum of two toppings must be chosen");
+      return;
+    } else if (!firstName || !lastName || !phoneNumber) {
+      window.alert("All customer details are compulsory");
+      return;
+    } else if (!street || !aptNumber || !city || !floor) {
+      window.alert("All delivery address details are compulsory");
+      return;
+    } else if (phoneNumber.substring(0,5) !== "+61 4" || phoneNumber.length !== 15) {
+      window.alert("Phone number must be of the format +61 4xx xxx xxx");
+      return;
+    } else if (aptNumber < 1) {
+      window.alert("Apartment number must be a positive whole number");
+      return;
+    } else if (floor < 1) {
+      window.alert("Floor number must be a positive whole number");
+    } else {
+      const order = {
+        size: sizeOption,
+        toppings: toppingOptions,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        street: street,
+        aptNumber: aptNumber,
+        city: city,
+        floor: floor
+      }
+      console.log(order);
+      appendLocalStorage("pizzas", JSON.stringify(order));
+    }
+  }
+
+  const appendLocalStorage = (keyVal, data) => {
+    let old = localStorage.getItem(keyVal);
+    if (old === null) {
+      localStorage.setItem(keyVal, "[" + data + "]");
+    } else {
+      const oldData = old.substring(1, old.length - 1);
+      localStorage.setItem(keyVal, "[" + oldData + "," + data + "]");
+    }
   }
 
   return (
     <div className="pizza-form">
-      <Form>
+      <Form onSubmit={submitOrder}>
         <div className="pizza-choice">
           <Form.Group>
             {/* https://react-bootstrap.netlify.app/components/buttons/#controlled */}
-            <ToggleButtonGroup className="pizza-size" type="radio" name={options} onChange={handleSize} size="lg">
+            <ToggleButtonGroup className="pizza-size" type="radio" name={sizeOption} onChange={handleSize} size="lg">
               <ToggleButton className="size-button" id="tbg-btn-1" value={1}>
                 SMALL
               </ToggleButton>
@@ -41,48 +133,56 @@ function PizzaForm() {
               </ToggleButton>
             </ToggleButtonGroup>
           </Form.Group>
-          <Form.Group className="toppings">
+          <Form.Group className="toppings" onChange={handleTopping}>
             <h6>Toppings</h6>
 
             <Form.Check
               inline
               type="checkbox"
               label="Sausage"
+              name="Sausage"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Pepperoni"
+              name="Pepperoni"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Ham"
+              name="Ham"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Olives"
+              name="Olives"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Bacon"
+              name="Bacon"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Corn"
+              name="Corn"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Pineapple"
+              name="Pineapple"
             />
             <Form.Check
               inline
               type="checkbox"
               label="Mushrooms"
+              name="Mushrooms"
             />
           </Form.Group>
         </div>
@@ -93,13 +193,13 @@ function PizzaForm() {
             <Row>
 
               <Col>
-                <Form.Control type="text" placeholder="First Name" />
+                <Form.Control type="text" name="firstName" onChange={getNameData} placeholder="First Name" />
               </Col>
               <Col>
-                <Form.Control type="text" placeholder="Last Name" />
+                <Form.Control type="text" name="lastName" onChange={getNameData} placeholder="Last Name" />
               </Col>
               <Col>
-                <Form.Control type="text" placeholder="Phone Number" />
+                <Form.Control type="text" name="phoneNumber" onChange={getNameData} /*value={formatPhoneNumber}*/ placeholder="Phone Number" />
               </Col>
               <Col>
               </Col>
@@ -109,16 +209,16 @@ function PizzaForm() {
             <h5>Delivery Address</h5>
             <Row>
               <Col>
-                <Form.Control type="text" placeholder="Street" />
+                <Form.Control type="text" name="street" onChange={getAddressData} placeholder="Street" />
               </Col>
               <Col>
-                <Form.Control type="text" placeholder="Apt. Number" />
+                <Form.Control type="number" name="aptNumber" onChange={getAddressData} placeholder="Apt. Number" />
               </Col>
               <Col>
-                <Form.Control type="text" placeholder="City" />
+                <Form.Control type="text" name="city" onChange={getAddressData} placeholder="City" />
               </Col>
               <Col>
-                <Form.Control type="text" placeholder="Floor" />
+                <Form.Control type="number" name="floor" onChange={getAddressData} placeholder="Floor" />
               </Col>
             </Row>
           </Form.Group>
