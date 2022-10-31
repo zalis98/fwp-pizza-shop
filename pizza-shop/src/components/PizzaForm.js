@@ -28,9 +28,9 @@ function PizzaForm(props) {
   });
   const [addressInput, setAddressInput] = useState({
     street: "",
-    aptNumber: null,
+    aptNumber: '',
     city: "",
-    floor: null
+    floor: ''
   });
 
   /**
@@ -190,7 +190,7 @@ function PizzaForm(props) {
       <Form onSubmit={submitOrder}>
         <div className="pizza-choice">
           <Form.Group>
-            <ToggleButtonGroup className="pizza-size" type="radio" name={sizeOption} onChange={handleSize} size="lg">
+            <ToggleButtonGroup className="pizza-size" type="radio" name={sizeOption} onChange={handleSize} size="lg" data-testid="radio-buttons">
               <ToggleButton className="size-button" id="tbg-btn-1" value={1} disabled={props.formDisabled}>
                 SMALL
               </ToggleButton>
@@ -202,7 +202,7 @@ function PizzaForm(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </Form.Group>
-          <Form.Group className="toppings" onChange={handleTopping}>
+          <Form.Group className="toppings" onChange={handleTopping} data-testid="checkboxes">
             <h6>Toppings</h6>
             <Form.Check
               inline
@@ -279,7 +279,7 @@ function PizzaForm(props) {
           </Form.Group>
         </div>
         <div className="all-details">
-          <Form.Group className="details">
+          <Form.Group className="details" data-testid="cus-details">
             <h5>Customer Details</h5>
             <Row>
               <Col>
@@ -295,7 +295,7 @@ function PizzaForm(props) {
               </Col>
             </Row>
           </Form.Group>
-          <Form.Group className="details">
+          <Form.Group className="details" data-testid="add-details">
             <h5>Delivery Address</h5>
             <Row>
               <Col>
@@ -314,7 +314,7 @@ function PizzaForm(props) {
           </Form.Group>
         </div>
         <div className="button-div">
-          <Button className="pizza-submit" variant="primary" type="submit" disabled={props.formDisabled}>
+          <Button className="pizza-submit" variant="primary" type="submit" disabled={props.formDisabled} data-testid="submit-button">
             SUBMIT
           </Button>
         </div>

@@ -50,7 +50,7 @@ function Order(props) {
   }
 
   return (
-    <div className="order">
+    <div className="order" data-testid="pizza-orders">
       <h4 className="order-heading">Pizzas order</h4>
       {pizzas.length !== 0 ?
         <div className="d-grid gap-2">
