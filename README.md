@@ -14,3 +14,7 @@
 3. Type `npm run jsdoc`, press Enter
 4. Navigate to newly created "jsdoc" folder in "pizza-shop" directory in File Explorer
 5. Open "index.js" in your favourite web browser
+
+## To run tests
+1. Follow steps 1-4 of "to run app"
+2. Type `npm test`, press Enter
