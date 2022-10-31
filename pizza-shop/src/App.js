@@ -10,6 +10,11 @@ import { useState } from 'react';
  */
 function App() {
 
+  /**
+   * @const formDisabled
+   * @description Sets form to disabled or not
+   * @type {boolean}
+   */
   const [formDisabled, setFormDisabled] = useState(false);
 
   /**

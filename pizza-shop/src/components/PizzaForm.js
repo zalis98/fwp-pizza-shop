@@ -15,23 +15,83 @@ import Button from "react-bootstrap/Button";
  * @returns Rendering of function
  */
 function PizzaForm(props) {
+  /**
+   * @constant sizeOption
+   * @description Sets size of pizza
+   * @type {number}
+   */
   const [sizeOption, setSizeOption] = useState({});
+  /**
+   * @constant toppingOptions
+   * @description Array of selected toppings
+   * @type {Array<string>}
+   */
   const [toppingOptions, setToppingOptions] = useState([]);
 
+  /**
+   * @const sausageCheck
+   * @description Boolean statong whether topping is checked
+   * @type {boolean}
+   */
   const [sausageCheck, setSausageCheck] = useState(false);
+  /**
+ * @const pepperoniCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [pepperoniCheck, setPepperoniCheck] = useState(false);
+  /**
+ * @const hamCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [hamCheck, setHamCheck] = useState(false);
+  /**
+ * @const olivesCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [olivesCheck, setOlivesCheck] = useState(false);
+  /**
+ * @const baconCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [baconCheck, setBaconCheck] = useState(false);
+  /**
+ * @const cornCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [cornCheck, setCornCheck] = useState(false);
+  /**
+ * @const pineappleCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [pineappleCheck, setPineappleCheck] = useState(false);
+  /**
+ * @const mushroomsCheck
+ * @description Boolean statong whether topping is checked
+ * @type {boolean}
+ */
   const [mushroomsCheck, setMushroomsCheck] = useState(false);
 
+  /**
+ * @const nameInput
+ * @description Object to store Customer Details
+ * @type {{firstName: string, lastName: string, phoneNumber: string}}
+ */
   const [nameInput, setNameInput] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: ""
   });
+  /**
+* @const addressInput
+* @description Object to store Delivery Address
+* @type {{street: string, aptNumber: number, city: string, floor: number}}
+*/
   const [addressInput, setAddressInput] = useState({
     street: "",
     aptNumber: '',
@@ -39,20 +99,20 @@ function PizzaForm(props) {
     floor: ''
   });
 
-/**
- * @function handleSize
- * @description Sets size once a radio button has been selected
- * @param {number} val Number corresponding to size of pizza
- */
+  /**
+   * @function handleSize
+   * @description Sets size once a radio button has been selected
+   * @param {number} val Number corresponding to size of pizza
+   */
   const handleSize = (val) => {
     setSizeOption(val);
   };
 
-/**
- * @function handleTopping
- * @description Adds checked toppings to toppingOptions and removes unchecked toppings
- * @param {Object} e Event passed onChange
- */
+  /**
+   * @function handleTopping
+   * @description Adds checked toppings to toppingOptions and removes unchecked toppings
+   * @param {Object} e Event passed onChange
+   */
   const handleTopping = (e) => {
     if (e.target.checked) {
       setToppingOptions(toppingOptions => [...toppingOptions, e.target.name])
@@ -68,11 +128,11 @@ function PizzaForm(props) {
     }
   };
 
-/**
- * @function getNameData
- * @description Reads values of Customer Details and stores them
- * @param {Object} e Event passed onChange
- */
+  /**
+   * @function getNameData
+   * @description Reads values of Customer Details and stores them
+   * @param {Object} e Event passed onChange
+   */
   const getNameData = (e) => {
     const { value, name } = e.target;
     setNameInput(() => {

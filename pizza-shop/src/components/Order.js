@@ -10,6 +10,11 @@ import Button from "react-bootstrap/Button";
  */
 function Order(props) {
 
+  /**
+   * @const pizzas
+   * @description Array of pizza orders
+   * @type {Array<Object>}
+   */
   const [pizzas, setPizzas] = useState([]);
 
   /**
