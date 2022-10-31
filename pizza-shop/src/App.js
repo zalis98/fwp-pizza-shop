@@ -1,15 +1,21 @@
 import './App.css';
 import PizzaForm from "./components/PizzaForm.js";
 import Order from "./components/Order.js";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+/**
+ * @function App
+ * @description Outer component to display pizza form and orders
+ * @returns Rendering of function
+ */
 function App() {
 
   const [formDisabled, setFormDisabled] = useState(false);
 
   /**
-   * Set whether form is disabled or not
-   * @param {boolean} status: True or false value to set formDisabled to
+   * @function disableForm
+   * @description Set whether form is disabled or not
+   * @param {boolean} status True or false value to set formDisabled to
    */
   const disableForm = (status) => {
     setFormDisabled(status);

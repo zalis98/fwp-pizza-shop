@@ -2,13 +2,19 @@ import "./Order.css";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
+/**
+ * @function Order
+ * @description Displays current pizza orders
+ * @param {Object} props Imports items from parent component: state and setState methods regarding disabled Form
+ * @returns Rendering of function
+ */
 function Order(props) {
 
   const [pizzas, setPizzas] = useState([]);
 
   /**
-   * useEffect runs whenever the state changes
-   * Sets pizzas to reflect those stored in localStorage
+   * @function useEffect
+   * @description Executes whenever the component state updates
    */
   useEffect(() => {
     async function loadPizzas() {
@@ -23,8 +29,9 @@ function Order(props) {
   }, [props.formDisabled]);
 
   /**
-   * Deletes a pizza from localStorage
-   * @param {pizza} delPizza: Pizza to be deleted
+   * @function deletePizza
+   * @description Deletes pizza from localStorage
+   * @param {Object} delPizza Pizza to be deleted
    */
   const deletePizza = (delPizza) => {
     if (window.confirm("Are you sure you want to delete this pizza?")) {
@@ -43,7 +50,8 @@ function Order(props) {
   };
 
   /**
-   * Sets formDisabled to false so user can add another pizza
+   * @function addPizza
+   * @description Sets formDisabled to false so user can add another pizza
    */
   const addPizza = () => {
     props.disableForm(false);

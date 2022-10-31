@@ -8,6 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
+/**
+ * @function PizzaForm
+ * @description Function to create Pizza order
+ * @param {Object} props Imports items from parent component: state and setState methods regarding disabled Form
+ * @returns Rendering of function
+ */
 function PizzaForm(props) {
   const [sizeOption, setSizeOption] = useState({});
   const [toppingOptions, setToppingOptions] = useState([]);
@@ -33,18 +39,20 @@ function PizzaForm(props) {
     floor: ''
   });
 
-  /**
-   * Set user's pizza size option
-   * @param {integer}: 1 represents small, 2 represents medium, 3 represents large
-   */
+/**
+ * @function handleSize
+ * @description Sets size once a radio button has been selected
+ * @param {number} val Number corresponding to size of pizza
+ */
   const handleSize = (val) => {
     setSizeOption(val);
   };
 
-  /**
-   * Set user's topping options
-   * @param {event} e: Captures the event of the triggering object
-   */
+/**
+ * @function handleTopping
+ * @description Adds checked toppings to toppingOptions and removes unchecked toppings
+ * @param {Object} e Event passed onChange
+ */
   const handleTopping = (e) => {
     if (e.target.checked) {
       setToppingOptions(toppingOptions => [...toppingOptions, e.target.name])
@@ -60,10 +68,11 @@ function PizzaForm(props) {
     }
   };
 
-  /**
-   * Get input data from Customer Details section
-   * @param {event} e: Captures the event of the triggering object
-   */
+/**
+ * @function getNameData
+ * @description Reads values of Customer Details and stores them
+ * @param {Object} e Event passed onChange
+ */
   const getNameData = (e) => {
     const { value, name } = e.target;
     setNameInput(() => {
@@ -75,9 +84,10 @@ function PizzaForm(props) {
   };
 
   /**
- * Get input data from Delivery Address section
- * @param {event} e: Captures the event of the triggering object
- */
+   * @function getAddressData
+   * @description Reads values of Delivery Address and stores them
+   * @param {Object} e Event passed onChange
+   */
   const getAddressData = (e) => {
     const { value, name } = e.target;
     setAddressInput(() => {
@@ -89,9 +99,10 @@ function PizzaForm(props) {
   };
 
   /**
-   * Gets all data from input form, and if valid, adds the pizza order to localStorage, clears the form, and disables input
-   * @param {event} e 
-   * @returns Returns if form has invalid inputs
+   * @function submitOrder
+   * @description Collects all data input into the form, validates it, and adds it to localStorage
+   * @param {Object} e Event passed onClick
+   * @returns Function returns early if some inputs are not valid
    */
   const submitOrder = (e) => {
     e.preventDefault();
@@ -145,7 +156,8 @@ function PizzaForm(props) {
   };
 
   /**
-   * Reset form fields to default after form submit
+   * @function resetFields
+   * @description Reset states to initial values, except for sizeOption because radio items do not like to be deselected
    */
   const resetFields = () => {
     setToppingOptions([]);
@@ -171,9 +183,10 @@ function PizzaForm(props) {
   };
 
   /**
-   * Helper function to "append" to localStorage since it does not have the ability to append
-   * @param {string} keyVal: Name of Key value
-   * @param {string} data: Data to be appended
+   * @function appendLocalStorage
+   * @description Helper function to "append" to localStorage since it does not have the ability to append
+   * @param {string} keyVal Name of Key value
+   * @param {string} data Data to be appended
    */
   const appendLocalStorage = (keyVal, data) => {
     let old = localStorage.getItem(keyVal);
