@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-function PizzaForm() {
+function PizzaForm(props) {
   const [sizeOption, setSizeOption] = useState({});
   const [toppingOptions, setToppingOptions] = useState([]);
 
@@ -33,7 +33,7 @@ function PizzaForm() {
     city: "",
     floor: null
   });
-  const [formDisabled, setFormDisabled] = useState(false);
+  // const [formDisabled, setFormDisabled] = useState(false);
 
   const handleSize = (val) => {
     setSizeOption(val);
@@ -121,7 +121,7 @@ function PizzaForm() {
       }
       appendLocalStorage("pizzas", JSON.stringify(order));
       resetFields();
-      setFormDisabled(true);
+      props.disableForm(true);
     }
   }
 
@@ -167,13 +167,13 @@ function PizzaForm() {
           <Form.Group>
             {/* https://react-bootstrap.netlify.app/components/buttons/#controlled */}
             <ToggleButtonGroup className="pizza-size" type="radio" name={sizeOption} onChange={handleSize} size="lg">
-              <ToggleButton className="size-button" id="tbg-btn-1" value={1} disabled={formDisabled}>
+              <ToggleButton className="size-button" id="tbg-btn-1" value={1} disabled={props.formDisabled}>
                 SMALL
               </ToggleButton>
-              <ToggleButton className="size-button" id="tbg-btn-2" value={2} disabled={formDisabled}>
+              <ToggleButton className="size-button" id="tbg-btn-2" value={2} disabled={props.formDisabled}>
                 MEDIUM
               </ToggleButton>
-              <ToggleButton className="size-button" id="tbg-btn-3" value={3} disabled={formDisabled}>
+              <ToggleButton className="size-button" id="tbg-btn-3" value={3} disabled={props.formDisabled}>
                 LARGE
               </ToggleButton>
             </ToggleButtonGroup>
@@ -188,7 +188,7 @@ function PizzaForm() {
               name="Sausage"
               checked={sausageCheck}
               onChange={e => setSausageCheck(!sausageCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -197,7 +197,7 @@ function PizzaForm() {
               name="Pepperoni"
               checked={pepperoniCheck}
               onChange={e => setPepperoniCheck(!pepperoniCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -206,7 +206,7 @@ function PizzaForm() {
               name="Ham"
               checked={hamCheck}
               onChange={e => setHamCheck(!hamCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -215,7 +215,7 @@ function PizzaForm() {
               name="Olives"
               checked={olivesCheck}
               onChange={e => setOlivesCheck(!olivesCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -224,7 +224,7 @@ function PizzaForm() {
               name="Bacon"
               checked={baconCheck}
               onChange={e => setBaconCheck(!baconCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -233,7 +233,7 @@ function PizzaForm() {
               name="Corn"
               checked={cornCheck}
               onChange={e => setCornCheck(!cornCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -242,7 +242,7 @@ function PizzaForm() {
               name="Pineapple"
               checked={pineappleCheck}
               onChange={e => setPineappleCheck(!pineappleCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
             <Form.Check
               inline
@@ -251,7 +251,7 @@ function PizzaForm() {
               name="Mushrooms"
               checked={mushroomsCheck}
               onChange={e => setMushroomsCheck(!mushroomsCheck)}
-              disabled={formDisabled}
+              disabled={props.formDisabled}
             />
           </Form.Group>
         </div>
@@ -262,13 +262,13 @@ function PizzaForm() {
             <Row>
 
               <Col>
-                <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" disabled={formDisabled}/>
+                <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" disabled={props.formDisabled}/>
               </Col>
               <Col>
-                <Form.Control type="text" name="lastName" onChange={getNameData} value={nameInput.lastName} placeholder="Last Name" disabled={formDisabled}/>
+                <Form.Control type="text" name="lastName" onChange={getNameData} value={nameInput.lastName} placeholder="Last Name" disabled={props.formDisabled}/>
               </Col>
               <Col>
-                <Form.Control type="text" name="phoneNumber" onChange={getNameData} value={nameInput.phoneNumber} placeholder="Phone Number" disabled={formDisabled}/>
+                <Form.Control type="text" name="phoneNumber" onChange={getNameData} value={nameInput.phoneNumber} placeholder="Phone Number" disabled={props.formDisabled}/>
               </Col>
               <Col>
               </Col>
@@ -278,23 +278,23 @@ function PizzaForm() {
             <h5>Delivery Address</h5>
             <Row>
               <Col>
-                <Form.Control type="text" name="street" onChange={getAddressData} value={addressInput.street} placeholder="Street" disabled={formDisabled} />
+                <Form.Control type="text" name="street" onChange={getAddressData} value={addressInput.street} placeholder="Street" disabled={props.formDisabled} />
               </Col>
               <Col>
-                <Form.Control type="number" name="aptNumber" onChange={getAddressData} value={addressInput.aptNumber} placeholder="Apt. Number" disabled={formDisabled} />
+                <Form.Control type="number" name="aptNumber" onChange={getAddressData} value={addressInput.aptNumber} placeholder="Apt. Number" disabled={props.formDisabled} />
               </Col>
               <Col>
-                <Form.Control type="text" name="city" onChange={getAddressData} value={addressInput.city} placeholder="City" disabled={formDisabled} />
+                <Form.Control type="text" name="city" onChange={getAddressData} value={addressInput.city} placeholder="City" disabled={props.formDisabled} />
               </Col>
               <Col>
-                <Form.Control type="number" name="floor" onChange={getAddressData} value={addressInput.floor} placeholder="Floor" disabled={formDisabled} />
+                <Form.Control type="number" name="floor" onChange={getAddressData} value={addressInput.floor} placeholder="Floor" disabled={props.formDisabled} />
               </Col>
             </Row>
           </Form.Group>
         </div>
         <div className="button-div">
 
-          <Button className="pizza-submit" variant="primary" type="submit">
+          <Button className="pizza-submit" variant="primary" type="submit" disabled={props.formDisabled}>
             SUBMIT
           </Button>
         </div>

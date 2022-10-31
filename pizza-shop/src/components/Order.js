@@ -2,16 +2,14 @@ import "./Order.css";
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
-function Order() {
+function Order(props) {
 
   const [pizzas, setPizzas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     function loadPizzas() {
       const currentPizzas = JSON.parse(localStorage.getItem("pizzas"));
       setPizzas(currentPizzas);
-      setIsLoading(false);
     }
     loadPizzas();
   }, [pizzas]);
@@ -31,6 +29,10 @@ function Order() {
     }
   }
 
+  const addPizza = () => {
+    props.disableForm(false);
+  }
+
   return (
     <div className="order">
       <h4 className="order-heading">Pizzas order</h4>
@@ -39,7 +41,7 @@ function Order() {
           {pizzas.map((x) =>
             <Button className="ordered-pizza" onClick={() => deletePizza(x)}><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
           )}
-          <Button className="add-pizza"><span className="plus">+</span></Button>
+          <Button className="add-pizza" onClick={addPizza}><span className="plus">+</span></Button>
         </div>
         :
         <div></div>
