@@ -1,6 +1,7 @@
 # Assignment 3
 *Zali Spurgeon - s3832759*
-**GitHub:** [link](https://github.com/rmit-fwp-s2-2022/a3-s3832759)
+
+**GitHub:** [Link](https://github.com/rmit-fwp-s2-2022/a3-s3832759)
 
 ## To run app
 1. Clone repository
