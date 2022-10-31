@@ -118,16 +118,16 @@ function PizzaForm(props) {
     } else if (!firstName || !lastName || !phoneNumber) {
       window.alert("All customer details are compulsory");
       return;
-    } else if (!street || !aptNumber || !city || !floor) {
-      window.alert("All delivery address details are compulsory");
-      return;
     } else if (phoneNumber.substring(0, 5) !== "+61 4" || phoneNumber.length !== 15) {
       window.alert("Phone number must be of the format +61 4xx xxx xxx");
       return;
-    } else if (aptNumber < 1) {
+    } else if (!street || !aptNumber || !city || !floor) {
+      window.alert("All delivery address details are compulsory");
+      return;
+    } else if (aptNumber < 1 || parseInt(aptNumber) != aptNumber) {
       window.alert("Apartment number must be a positive whole number");
       return;
-    } else if (floor < 1) {
+    } else if (floor < 1 || parseInt(floor) != floor) {
       window.alert("Floor number must be a positive whole number");
     } else {
       let pizzaSize = "";
