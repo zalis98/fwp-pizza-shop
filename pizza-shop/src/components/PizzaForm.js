@@ -12,6 +12,7 @@ import Button from "react-bootstrap/Button";
 function PizzaForm() {
   const [sizeOption, setSizeOption] = useState({});
   const [toppingOptions, setToppingOptions] = useState([]);
+
   const [sausageCheck, setSausageCheck] = useState(false);
   const [pepperoniCheck, setPepperoniCheck] = useState(false);
   const [hamCheck, setHamCheck] = useState(false);
@@ -126,7 +127,7 @@ function PizzaForm() {
   }
 
   const resetFields = () => {
-    setSizeOption({});
+    // setSizeOption({});
     setToppingOptions([]);
     setNameInput({
       firstName: "",

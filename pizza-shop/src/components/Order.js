@@ -5,14 +5,31 @@ import Button from "react-bootstrap/Button";
 function Order() {
 
   const [pizzas, setPizzas] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     function loadPizzas() {
       const currentPizzas = JSON.parse(localStorage.getItem("pizzas"));
       setPizzas(currentPizzas);
+      setIsLoading(false);
     }
     loadPizzas();
   }, [pizzas]);
+
+  const deletePizza = (delPizza) => {
+    if (window.confirm("Are you sure you want to delete this pizza?")) {
+      const pizzasCopy = [...pizzas];
+      const delIndex = pizzasCopy.indexOf(delPizza);
+      pizzasCopy.splice(delIndex, 1);
+      if (JSON.stringify(pizzasCopy) === "[]") {
+        setPizzas([]);
+        localStorage.removeItem("pizzas");
+      } else {
+        setPizzas(pizzas => [...pizzasCopy])
+        localStorage.setItem("pizzas", JSON.stringify(pizzasCopy));
+      }
+    }
+  }
 
   return (
     <div className="order">
@@ -20,7 +37,7 @@ function Order() {
       {pizzas ?
         <div className="d-grid gap-2">
           {pizzas.map((x) =>
-            <Button className="ordered-pizza"><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
+            <Button className="ordered-pizza" onClick={() => deletePizza(x)}><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
           )}
           <Button className="add-pizza"><span className="plus">+</span></Button>
         </div>
