@@ -32,7 +32,7 @@ function Order(props) {
         localStorage.setItem("pizzas", JSON.stringify(pizzasCopy));
       }
     }
-  }
+  };
 
   const addPizza = () => {
     props.disableForm(false);
@@ -49,12 +49,10 @@ function Order(props) {
           <Button className="add-pizza" onClick={addPizza}><span className="plus">+</span></Button>
         </div>
         :
-        <div>
-
-        </div>
+        <div></div>
       }
     </div>
-  )
-}
+  );
+};
 
 export default Order;

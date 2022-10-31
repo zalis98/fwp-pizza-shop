@@ -1,5 +1,4 @@
 import "./PizzaForm.css";
-// import 'bootstrap/dist/css/bootstrap.css';
 import React from "react";
 import { useState } from "react";
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -33,11 +32,10 @@ function PizzaForm(props) {
     city: "",
     floor: null
   });
-  // const [formDisabled, setFormDisabled] = useState(false);
 
   const handleSize = (val) => {
     setSizeOption(val);
-  }
+  };
 
   const handleTopping = (e) => {
     if (e.target.checked) {
@@ -52,7 +50,7 @@ function PizzaForm(props) {
         }
       }
     }
-  }
+  };
 
   const getNameData = (e) => {
     const { value, name } = e.target;
@@ -62,7 +60,7 @@ function PizzaForm(props) {
         [name]: value
       }
     });
-  }
+  };
 
   const getAddressData = (e) => {
     const { value, name } = e.target;
@@ -72,7 +70,7 @@ function PizzaForm(props) {
         [name]: value
       }
     });
-  }
+  };
 
   const submitOrder = (e) => {
     e.preventDefault();
@@ -123,7 +121,7 @@ function PizzaForm(props) {
       resetFields();
       props.disableForm(true);
     }
-  }
+  };
 
   const resetFields = () => {
     // setSizeOption({});
@@ -147,8 +145,7 @@ function PizzaForm(props) {
     setCornCheck(false);
     setPineappleCheck(false);
     setMushroomsCheck(false);
-
-  }
+  };
 
   const appendLocalStorage = (keyVal, data) => {
     let old = localStorage.getItem(keyVal);
@@ -158,8 +155,8 @@ function PizzaForm(props) {
       const oldData = old.substring(1, old.length - 1);
       localStorage.setItem(keyVal, "[" + oldData + "," + data + "]");
     }
-  }
-
+  };
+  
   return (
     <div className="pizza-form">
       <Form onSubmit={submitOrder}>
@@ -180,7 +177,6 @@ function PizzaForm(props) {
           </Form.Group>
           <Form.Group className="toppings" onChange={handleTopping}>
             <h6>Toppings</h6>
-
             <Form.Check
               inline
               type="checkbox"
@@ -256,11 +252,9 @@ function PizzaForm(props) {
           </Form.Group>
         </div>
         <div className="all-details">
-
           <Form.Group className="details">
             <h5>Customer Details</h5>
             <Row>
-
               <Col>
                 <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" disabled={props.formDisabled}/>
               </Col>
@@ -293,15 +287,13 @@ function PizzaForm(props) {
           </Form.Group>
         </div>
         <div className="button-div">
-
           <Button className="pizza-submit" variant="primary" type="submit" disabled={props.formDisabled}>
             SUBMIT
           </Button>
         </div>
       </Form>
     </div>
-  )
-
-}
+  );
+};
 
 export default PizzaForm;
