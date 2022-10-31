@@ -1,5 +1,6 @@
 .pizza-form {
   padding: 1rem;
+  width: 100%;
 }
 
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:nth-child(n+3), .btn-group>:not(.btn-check)+.btn {

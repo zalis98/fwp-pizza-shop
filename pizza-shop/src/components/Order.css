@@ -1,0 +1,41 @@
+.order {
+  padding: 1rem;
+  width: 40%;
+}
+
+.order-heading {
+  font-weight: 700;
+
+}
+
+.plus {
+  margin: 0;
+  padding: 0.15rem 0.5rem 0.25rem;
+  border-radius: 2.5rem;
+  background-color: #6f42c1;
+  font-weight: bold;
+  text-align: center;
+}
+
+button.ordered-pizza.btn.btn-primary {
+  --bs-btn-bg: #6f42c1;
+  --bs-btn-border-color: #6f42c1;
+  --bs-btn-hover-bg: #f1f1f1;
+  --bs-btn-hover-bg: #6f42c1;
+  --bs-btn-hover-border-color: #6f42c1;
+  --bs-btn-active-bg: #6f42c1;
+  --bs-btn-active-border-color: #6f42c1; 
+  border-radius: 0;
+}
+
+button.add-pizza.btn.btn-primary {
+  --bs-btn-bg: #f1f1f1;
+  --bs-btn-border-color: #f1f1f1;
+  --bs-btn-hover-bg: #f1f1f1;
+  --bs-btn-hover-bg: #f1f1f1;
+  --bs-btn-hover-border-color: #f1f1f1;
+  --bs-btn-active-bg: #f1f1f1;
+  --bs-btn-active-border-color: #f1f1f1; 
+  box-shadow: 2px 2px 2px 2px #adb5bd;
+  border-radius: 0;
+}
