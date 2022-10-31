@@ -7,12 +7,16 @@ function Order(props) {
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    function loadPizzas() {
-      const currentPizzas = JSON.parse(localStorage.getItem("pizzas"));
-      setPizzas(currentPizzas);
+    async function loadPizzas() {
+
+      const currentPizzas = await JSON.parse(localStorage.getItem("pizzas"));
+      if (currentPizzas) {
+        setPizzas(currentPizzas);
+      }
+
     }
     loadPizzas();
-  }, [pizzas]);
+  }, [props.formDisabled]);
 
   const deletePizza = (delPizza) => {
     if (window.confirm("Are you sure you want to delete this pizza?")) {
@@ -22,6 +26,7 @@ function Order(props) {
       if (JSON.stringify(pizzasCopy) === "[]") {
         setPizzas([]);
         localStorage.removeItem("pizzas");
+        props.disableForm(false);
       } else {
         setPizzas(pizzas => [...pizzasCopy])
         localStorage.setItem("pizzas", JSON.stringify(pizzasCopy));
@@ -36,7 +41,7 @@ function Order(props) {
   return (
     <div className="order">
       <h4 className="order-heading">Pizzas order</h4>
-      {pizzas !== null ?
+      {pizzas.length !== 0 ?
         <div className="d-grid gap-2">
           {pizzas.map((x) =>
             <Button className="ordered-pizza" onClick={() => deletePizza(x)}><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
@@ -44,7 +49,9 @@ function Order(props) {
           <Button className="add-pizza" onClick={addPizza}><span className="plus">+</span></Button>
         </div>
         :
-        <div></div>
+        <div>
+
+        </div>
       }
     </div>
   )
