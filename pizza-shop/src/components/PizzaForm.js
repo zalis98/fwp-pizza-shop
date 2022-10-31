@@ -12,10 +12,19 @@ import Button from "react-bootstrap/Button";
 function PizzaForm() {
   const [sizeOption, setSizeOption] = useState({});
   const [toppingOptions, setToppingOptions] = useState([]);
+  const [sausageCheck, setSausageCheck] = useState(false);
+  const [pepperoniCheck, setPepperoniCheck] = useState(false);
+  const [hamCheck, setHamCheck] = useState(false);
+  const [olivesCheck, setOlivesCheck] = useState(false);
+  const [baconCheck, setBaconCheck] = useState(false);
+  const [cornCheck, setCornCheck] = useState(false);
+  const [pineappleCheck, setPineappleCheck] = useState(false);
+  const [mushroomsCheck, setMushroomsCheck] = useState(false);
+
   const [nameInput, setNameInput] = useState({
     firstName: "",
     lastName: "",
-    phoneNumber: null
+    phoneNumber: ""
   });
   const [addressInput, setAddressInput] = useState({
     street: "",
@@ -41,6 +50,7 @@ function PizzaForm() {
         }
       }
     }
+    console.log(toppingOptions);
   }
 
   const getNameData = (e) => {
@@ -58,7 +68,7 @@ function PizzaForm() {
     setAddressInput(() => {
       return {
         ...addressInput,
-      [name]: value
+        [name]: value
       }
     });
   }
@@ -80,7 +90,7 @@ function PizzaForm() {
     } else if (!street || !aptNumber || !city || !floor) {
       window.alert("All delivery address details are compulsory");
       return;
-    } else if (phoneNumber.substring(0,5) !== "+61 4" || phoneNumber.length !== 15) {
+    } else if (phoneNumber.substring(0, 5) !== "+61 4" || phoneNumber.length !== 15) {
       window.alert("Phone number must be of the format +61 4xx xxx xxx");
       return;
     } else if (aptNumber < 1) {
@@ -110,7 +120,34 @@ function PizzaForm() {
       }
       console.log(order);
       appendLocalStorage("pizzas", JSON.stringify(order));
+      resetFields();
+      console.log("called?");
     }
+  }
+
+  const resetFields = () => {
+    setSizeOption({});
+    setToppingOptions([]);
+    setNameInput({
+      firstName: "",
+      lastName: "",
+      phoneNumber: ""
+    });
+    setAddressInput({
+      street: "",
+      aptNumber: '',
+      city: "",
+      floor: ''
+    });
+    setSausageCheck(false);
+    setPepperoniCheck(false);
+    setHamCheck(false);
+    setOlivesCheck(false);
+    setBaconCheck(false);
+    setCornCheck(false);
+    setPineappleCheck(false);
+    setMushroomsCheck(false);
+
   }
 
   const appendLocalStorage = (keyVal, data) => {
@@ -149,48 +186,64 @@ function PizzaForm() {
               type="checkbox"
               label="Sausage"
               name="Sausage"
+              checked={sausageCheck}
+              onChange={e => setSausageCheck(!sausageCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Pepperoni"
               name="Pepperoni"
+              checked={pepperoniCheck}
+              onChange={e => setPepperoniCheck(!pepperoniCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Ham"
               name="Ham"
+              checked={hamCheck}
+              onChange={e => setHamCheck(!hamCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Olives"
               name="Olives"
+              checked={olivesCheck}
+              onChange={e => setOlivesCheck(!olivesCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Bacon"
               name="Bacon"
+              checked={baconCheck}
+              onChange={e => setBaconCheck(!baconCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Corn"
               name="Corn"
+              checked={cornCheck}
+              onChange={e => setCornCheck(!cornCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Pineapple"
               name="Pineapple"
+              checked={pineappleCheck}
+              onChange={e => setPineappleCheck(!pineappleCheck)}
             />
             <Form.Check
               inline
               type="checkbox"
               label="Mushrooms"
               name="Mushrooms"
+              checked={mushroomsCheck}
+              onChange={e => setMushroomsCheck(!mushroomsCheck)}
             />
           </Form.Group>
         </div>
@@ -201,13 +254,13 @@ function PizzaForm() {
             <Row>
 
               <Col>
-                <Form.Control type="text" name="firstName" onChange={getNameData} placeholder="First Name" />
+                <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" />
               </Col>
               <Col>
-                <Form.Control type="text" name="lastName" onChange={getNameData} placeholder="Last Name" />
+                <Form.Control type="text" name="lastName" onChange={getNameData} value={nameInput.lastName} placeholder="Last Name" />
               </Col>
               <Col>
-                <Form.Control type="text" name="phoneNumber" onChange={getNameData} /*value={formatPhoneNumber}*/ placeholder="Phone Number" />
+                <Form.Control type="text" name="phoneNumber" onChange={getNameData} value={nameInput.phoneNumber} placeholder="Phone Number" />
               </Col>
               <Col>
               </Col>
@@ -217,16 +270,16 @@ function PizzaForm() {
             <h5>Delivery Address</h5>
             <Row>
               <Col>
-                <Form.Control type="text" name="street" onChange={getAddressData} placeholder="Street" />
+                <Form.Control type="text" name="street" onChange={getAddressData} value={addressInput.street} placeholder="Street" />
               </Col>
               <Col>
-                <Form.Control type="number" name="aptNumber" onChange={getAddressData} placeholder="Apt. Number" />
+                <Form.Control type="number" name="aptNumber" onChange={getAddressData} value={addressInput.aptNumber} placeholder="Apt. Number" />
               </Col>
               <Col>
-                <Form.Control type="text" name="city" onChange={getAddressData} placeholder="City" />
+                <Form.Control type="text" name="city" onChange={getAddressData} value={addressInput.city} placeholder="City" />
               </Col>
               <Col>
-                <Form.Control type="number" name="floor" onChange={getAddressData} placeholder="Floor" />
+                <Form.Control type="number" name="floor" onChange={getAddressData} value={addressInput.floor} placeholder="Floor" />
               </Col>
             </Row>
           </Form.Group>

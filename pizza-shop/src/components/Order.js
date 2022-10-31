@@ -17,12 +17,16 @@ function Order() {
   return (
     <div className="order">
       <h4 className="order-heading">Pizzas order</h4>
-      <div className="d-grid gap-2">
-        {pizzas.map((x) =>
-          <Button className="ordered-pizza"><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
-        )}
-        <Button className="add-pizza"><span className="plus">+</span></Button>
-      </div>
+      {pizzas ?
+        <div className="d-grid gap-2">
+          {pizzas.map((x) =>
+            <Button className="ordered-pizza"><p className="pizza-type">{x.size} pizza</p><span className="minus">-</span></Button>
+          )}
+          <Button className="add-pizza"><span className="plus">+</span></Button>
+        </div>
+        :
+        <div></div>
+      }
     </div>
   )
 }
