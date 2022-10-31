@@ -7,6 +7,7 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 function PizzaForm() {
   const [options, setOptions] = useState(1);
@@ -24,70 +25,69 @@ function PizzaForm() {
 
   return (
     <div className="pizza-form">
-      <div>
-        <Form className="all-details">
-          <div className="pizza-choice">
-            <Form.Group>
-              {/* https://react-bootstrap.netlify.app/components/buttons/#controlled */}
-              <ToggleButtonGroup className="pizza-size" type="radio" name={options} onChange={handleSize} size="lg">
-                <ToggleButton className="size-button" id="tbg-btn-1" value={1}>
-                  SMALL
-                </ToggleButton>
-                <ToggleButton className="size-button" id="tbg-btn-2" value={2}>
-                  MEDIUM
-                </ToggleButton>
-                <ToggleButton className="size-button" id="tbg-btn-3" value={3}>
-                  LARGE
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Form.Group>
-            <Form.Group className="toppings">
-              <h6>Toppings</h6>
+      <Form>
+        <div className="pizza-choice">
+          <Form.Group>
+            {/* https://react-bootstrap.netlify.app/components/buttons/#controlled */}
+            <ToggleButtonGroup className="pizza-size" type="radio" name={options} onChange={handleSize} size="lg">
+              <ToggleButton className="size-button" id="tbg-btn-1" value={1}>
+                SMALL
+              </ToggleButton>
+              <ToggleButton className="size-button" id="tbg-btn-2" value={2}>
+                MEDIUM
+              </ToggleButton>
+              <ToggleButton className="size-button" id="tbg-btn-3" value={3}>
+                LARGE
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Form.Group>
+          <Form.Group className="toppings">
+            <h6>Toppings</h6>
 
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Sausage"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Pepperoni"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Ham"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Olives"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Bacon"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Corn"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Pineapple"
-              />
-              <Form.Check
-                inline
-                type="checkbox"
-                label="Mushrooms"
-              />
-            </Form.Group>
-          </div>
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Sausage"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Pepperoni"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Ham"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Olives"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Bacon"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Corn"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Pineapple"
+            />
+            <Form.Check
+              inline
+              type="checkbox"
+              label="Mushrooms"
+            />
+          </Form.Group>
+        </div>
+        <div className="all-details">
 
-          {/* <Form.Group className="mb-3" controlId="formBasicEmail"> */}
           <Form.Group className="details">
             <h5>Customer Details</h5>
             <Row>
@@ -122,9 +122,14 @@ function PizzaForm() {
               </Col>
             </Row>
           </Form.Group>
-          {/* </Form.Group> */}
-        </Form>
-      </div>
+        </div>
+        <div className="button-div">
+
+          <Button className="pizza-submit" variant="primary" type="submit">
+            SUBMIT
+          </Button>
+        </div>
+      </Form>
     </div>
   )
 

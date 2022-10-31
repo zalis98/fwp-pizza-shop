@@ -18,11 +18,13 @@
   --bs-btn-active-bg: #6f42c1;
   --bs-btn-active-border-color: #6f42c1;
   font-size: 1rem;
+  font-weight: 500;
   padding: 0.5rem 1rem;
 }
 
 .toppings {
   text-align: left;
+  font-weight: 450;
 }
 
 .pizza-choice {
@@ -58,4 +60,23 @@ input.form-control {
   border-radius: 0;
   padding: 0 6px;
   font-size: 1.5vw;
+}
+
+.button-div {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+button.pizza-submit.btn.btn-primary {
+  font-size: small;
+  font-weight:500;
+  --bs-btn-bg: #3E51B5;
+  --bs-btn-border-color: #3E51B5;
+  --bs-btn-hover-bg: #3e51b5;
+  border-radius: 0;
+  padding: 3px 12px;
+}
+
+.pizza-submit {
+  align-self: left;
 }
