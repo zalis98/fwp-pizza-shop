@@ -18,6 +18,9 @@
   --bs-btn-hover-border-color: #6f42c1;
   --bs-btn-active-bg: #6f42c1;
   --bs-btn-active-border-color: #6f42c1;
+  --bs-btn-disabled-bg: #f1f1f1;
+  --bs-btn-disabled-border-color: #adb5bd;
+  --bs-btn-disabled-color: #adb5bd;
   font-size: 1rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
