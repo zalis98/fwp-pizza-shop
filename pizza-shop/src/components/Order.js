@@ -6,6 +6,10 @@ function Order(props) {
 
   const [pizzas, setPizzas] = useState([]);
 
+  /**
+   * useEffect runs whenever the state changes
+   * Sets pizzas to reflect those stored in localStorage
+   */
   useEffect(() => {
     async function loadPizzas() {
 
@@ -18,6 +22,10 @@ function Order(props) {
     loadPizzas();
   }, [props.formDisabled]);
 
+  /**
+   * Deletes a pizza from localStorage
+   * @param {pizza} delPizza: Pizza to be deleted
+   */
   const deletePizza = (delPizza) => {
     if (window.confirm("Are you sure you want to delete this pizza?")) {
       const pizzasCopy = [...pizzas];
@@ -34,6 +42,9 @@ function Order(props) {
     }
   };
 
+  /**
+   * Sets formDisabled to false so user can add another pizza
+   */
   const addPizza = () => {
     props.disableForm(false);
   }

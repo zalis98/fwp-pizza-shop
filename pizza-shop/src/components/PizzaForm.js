@@ -33,10 +33,18 @@ function PizzaForm(props) {
     floor: null
   });
 
+  /**
+   * Set user's pizza size option
+   * @param {integer}: 1 represents small, 2 represents medium, 3 represents large
+   */
   const handleSize = (val) => {
     setSizeOption(val);
   };
 
+  /**
+   * Set user's topping options
+   * @param {event} e: Captures the event of the triggering object
+   */
   const handleTopping = (e) => {
     if (e.target.checked) {
       setToppingOptions(toppingOptions => [...toppingOptions, e.target.name])
@@ -52,6 +60,10 @@ function PizzaForm(props) {
     }
   };
 
+  /**
+   * Get input data from Customer Details section
+   * @param {event} e: Captures the event of the triggering object
+   */
   const getNameData = (e) => {
     const { value, name } = e.target;
     setNameInput(() => {
@@ -62,6 +74,10 @@ function PizzaForm(props) {
     });
   };
 
+  /**
+ * Get input data from Delivery Address section
+ * @param {event} e: Captures the event of the triggering object
+ */
   const getAddressData = (e) => {
     const { value, name } = e.target;
     setAddressInput(() => {
@@ -72,6 +88,11 @@ function PizzaForm(props) {
     });
   };
 
+  /**
+   * Gets all data from input form, and if valid, adds the pizza order to localStorage, clears the form, and disables input
+   * @param {event} e 
+   * @returns Returns if form has invalid inputs
+   */
   const submitOrder = (e) => {
     e.preventDefault();
     const { firstName, lastName, phoneNumber } = nameInput;
@@ -123,8 +144,10 @@ function PizzaForm(props) {
     }
   };
 
+  /**
+   * Reset form fields to default after form submit
+   */
   const resetFields = () => {
-    // setSizeOption({});
     setToppingOptions([]);
     setNameInput({
       firstName: "",
@@ -147,6 +170,11 @@ function PizzaForm(props) {
     setMushroomsCheck(false);
   };
 
+  /**
+   * Helper function to "append" to localStorage since it does not have the ability to append
+   * @param {string} keyVal: Name of Key value
+   * @param {string} data: Data to be appended
+   */
   const appendLocalStorage = (keyVal, data) => {
     let old = localStorage.getItem(keyVal);
     if (old === null) {
@@ -156,13 +184,12 @@ function PizzaForm(props) {
       localStorage.setItem(keyVal, "[" + oldData + "," + data + "]");
     }
   };
-  
+
   return (
     <div className="pizza-form">
       <Form onSubmit={submitOrder}>
         <div className="pizza-choice">
           <Form.Group>
-            {/* https://react-bootstrap.netlify.app/components/buttons/#controlled */}
             <ToggleButtonGroup className="pizza-size" type="radio" name={sizeOption} onChange={handleSize} size="lg">
               <ToggleButton className="size-button" id="tbg-btn-1" value={1} disabled={props.formDisabled}>
                 SMALL
@@ -256,13 +283,13 @@ function PizzaForm(props) {
             <h5>Customer Details</h5>
             <Row>
               <Col>
-                <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" disabled={props.formDisabled}/>
+                <Form.Control type="text" name="firstName" onChange={getNameData} value={nameInput.firstName} placeholder="First Name" disabled={props.formDisabled} />
               </Col>
               <Col>
-                <Form.Control type="text" name="lastName" onChange={getNameData} value={nameInput.lastName} placeholder="Last Name" disabled={props.formDisabled}/>
+                <Form.Control type="text" name="lastName" onChange={getNameData} value={nameInput.lastName} placeholder="Last Name" disabled={props.formDisabled} />
               </Col>
               <Col>
-                <Form.Control type="text" name="phoneNumber" onChange={getNameData} value={nameInput.phoneNumber} placeholder="Phone Number" disabled={props.formDisabled}/>
+                <Form.Control type="text" name="phoneNumber" onChange={getNameData} value={nameInput.phoneNumber} placeholder="Phone Number" disabled={props.formDisabled} />
               </Col>
               <Col>
               </Col>
