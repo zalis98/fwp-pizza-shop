@@ -89,8 +89,16 @@ function PizzaForm() {
     } else if (floor < 1) {
       window.alert("Floor number must be a positive whole number");
     } else {
+      let pizzaSize = "";
+      if (sizeOption === 1) {
+        pizzaSize = "S";
+      } else if (sizeOption === 2) {
+        pizzaSize = "M";
+      } else {
+        pizzaSize = "L";
+      }
       const order = {
-        size: sizeOption,
+        size: pizzaSize,
         toppings: toppingOptions,
         firstName: firstName,
         lastName: lastName,
