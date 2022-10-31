@@ -17,6 +17,16 @@
   text-align: center;
 }
 
+.minus {
+  margin: 0;
+  padding: 0 0.5rem;
+  border-radius: 2.5rem;
+  color: #6f42c1;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  text-align: center;
+}
+
 button.ordered-pizza.btn.btn-primary {
   --bs-btn-bg: #6f42c1;
   --bs-btn-border-color: #6f42c1;
@@ -26,6 +36,13 @@ button.ordered-pizza.btn.btn-primary {
   --bs-btn-active-bg: #6f42c1;
   --bs-btn-active-border-color: #6f42c1; 
   border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pizza-type {
+  margin: 0;
 }
 
 button.add-pizza.btn.btn-primary {
